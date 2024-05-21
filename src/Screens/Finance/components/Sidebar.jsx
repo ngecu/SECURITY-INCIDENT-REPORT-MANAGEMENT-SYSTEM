@@ -77,34 +77,23 @@ const storedUser = JSON.parse(localStorage.getItem('userInfo'));
           icon={<GridViewRoundedIcon />}> Dashboard </MenuItem>
           <MenuItem component={<Link to="/finance/requests"
           style={isActive('/finance/requests') ? activeLinkStyle : {}}
-          className="link" />} icon={<FaCodePullRequest />}> Requests </MenuItem>
-          {userInfo?.isHead && <MenuItem component={<Link to="/finance/department_requests" className="link" />} 
-          style={isActive('/finance/department_requests') ? activeLinkStyle : {}}
-          icon={<RiLuggageDepositFill />}>Department Requests </MenuItem>}
+          className="link" />} icon={<FaCodePullRequest />}> Occurence Book </MenuItem>
+        
           
           <MenuItem 
           style={isActive('/finance/fee0_payment') ? activeLinkStyle : {}}
-          component={<Link to="/finance/fee_payment" className="link" />} icon={<MdPayments />}>Fee Payment </MenuItem>
+          component={<Link to="/finance/fee_payment" className="link" />} icon={<MdPayments />}>Incident Report </MenuItem>
 
-          {/* <SubMenu label="Bank And Cash" icon={<FaFileInvoiceDollar />}>
-            <MenuItem component={<Link to="/finance/bank_and_cash/bank_transactions" className="link" />}  icon={<MdHowToVote />}> Bank Transactions </MenuItem>
-            <MenuItem component={<Link to="/finance/fee_invoicing/fee_structure" className="link" />}  icon={<MdOutlineFeed />}> Mpesa Transactions </MenuItem>
-        
-          </SubMenu> */}
+     
           
-          <SubMenu label="Fee Invoicing" icon={<FaFileInvoiceDollar />}>
-            <MenuItem component={<Link to="/finance/fee_invoicing/voteheads" className="link" />}  icon={<MdHowToVote />}> Vote Heads </MenuItem>
-            <MenuItem component={<Link to="/finance/fee_invoicing/fee_structure" className="link" />}  icon={<MdOutlineFeed />}> Fee Structure </MenuItem>
-            <MenuItem component={<Link to="/finance/fee_invoicing/fee_debit" className="link" />}  icon={<GiBladeBite />}> Fee Debits </MenuItem>
-        
+          <SubMenu label="Police Station" icon={<FaFileInvoiceDollar />}>
+            <MenuItem component={<Link to="/finance/fee_invoicing/voteheads" className="link" />}  icon={<MdHowToVote />}> Duties </MenuItem>
+            <MenuItem component={<Link to="/finance/fee_invoicing/voteheads" className="link" />}  icon={<MdHowToVote />}> Evidence Room </MenuItem>
+
           </SubMenu>
 
-          <SubMenu label="Fee Records" icon={<FaFileInvoiceDollar />}>
-            <MenuItem component={<Link to="/finance/fee_records/payments" className="link" />}  icon={<MdOutlinePayments />}> Payments </MenuItem>
-            <MenuItem component={<Link to="/finance/fee_records/fee_balance" className="link" />}  icon={<FaBalanceScaleLeft />}> Fee Balance </MenuItem>
-            {/* <MenuItem component={<Link to="/finance/fee_records/mpesa" className="link" />}  icon={<FaMobileRetro />}> Mpesa </MenuItem> */}
-        
-          </SubMenu>
+          
+
           <MenuItem component={<Button type="primary" onClick={logoutHandler} style={{ backgroundColor: 'red', borderRadius: '120px',color:'white' }}></Button>} icon={<FiLogOut className="mx-2" />}>LOGOUT </MenuItem>
 
         </Menu>

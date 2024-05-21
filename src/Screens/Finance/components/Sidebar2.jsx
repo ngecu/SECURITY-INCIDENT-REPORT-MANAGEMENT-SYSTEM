@@ -66,7 +66,7 @@ const storedUser = JSON.parse(localStorage.getItem('userInfo'));
               <CDBSidebarMenuItem style={location.pathname === '/' ? activeLinkStyle : {}}> <FaHome className='mx-2' />Dashboard</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/finance/requests" activeClassName="activeClicked">
-            <CDBSidebarMenuItem style={location.pathname === '/finance/requests' ? activeLinkStyle : {}}> <GiLandMine className='mx-2' /> Requests</CDBSidebarMenuItem>            
+            <CDBSidebarMenuItem style={location.pathname === '/finance/requests' ? activeLinkStyle : {}}> <GiLandMine className='mx-2' /> Occurence Book</CDBSidebarMenuItem>            
             </NavLink>
             <NavLink exact to="/finance/department_requests" activeClassName="activeClicked">
             <CDBSidebarMenuItem style={location.pathname === '/finance/requests' ? activeLinkStyle : {}}> <GiLandMine className='mx-2' /> Department Requests</CDBSidebarMenuItem>            

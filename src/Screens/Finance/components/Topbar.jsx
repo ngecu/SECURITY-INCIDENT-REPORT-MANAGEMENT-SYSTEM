@@ -56,7 +56,7 @@ const Topbar = () => {
     <nav className="main-header navbar navbar-expand navbar-white navbar-light">
       <ul className="navbar-nav">
         <li className="nav-item justify-content-center">
-        👋 {getGreeting()} FINANCE OFFICER
+        👋 {getGreeting()} POLICE OFFICER
         </li>
       </ul>
 
