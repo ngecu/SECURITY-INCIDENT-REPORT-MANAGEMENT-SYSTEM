@@ -1,68 +1,202 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-calendars/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-dropdowns/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-schedule/styles/material.css";
+@import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*{
+  padding: 0;
 }
+/* App.css */
+.login-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 50px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+  /* Flexbox */
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  flex-direction: column; /* Arrange items in a column */
+  align-items: center; /* Center items horizontally */
+}
+
+/* Style for the form fields */
+.login-form {
+  width: 100%;
+  max-width: 300px; /* Limit the width of the form */
+}
+
+/* Styling for the forgot password link */
+.login-form-forgot {
+  margin-top: 10px; /* Add some space above the link */
+  align-self: flex-end; /* Align the link to the end of the container */
+}
+
+/* Styling for the login button */
+.login-form-button {
+  width: 100%;
+}
+
+.btn-primary,.bg-primary{
+  background-color: #6F121F;
+}
+
+.main-content {
+  max-height: 100vh;
+  overflow-y: auto;
+  background-color: #E6F4FF;
+}
+
+/* Hide scrollbar for WebKit browsers */
+.main-content::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar width */
+  background: transparent;  /* Optional: Set background color of the scrollbar track */
+}
+
+.nav-item{
+  margin-left: 2rem;
+}
+.main-content{
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.nav-item.badge{
+  background-color: #6F121F;
+  border-radius: 20px;
+  padding: 0 20%;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* you can make up upload button and sample style by using stylesheets */
+.ant-upload-select-picture-card i {
+  font-size: 32px;
+  color: #999;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.ant-upload-select-picture-card .ant-upload-text {
+  margin-top: 8px;
+  color: #666;
+}
+
+.ant-card-body canvas{
+  width:  100% !important;
+  height:  100% !important;
+
+}
+
+
+.loader-container {
+  display: flex;
+  justify-content: center; /* Horizontally center the loader */
+  align-items: center; /* Vertically center the loader */
+  height: 100%; /* Set the height of the container */
+}
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 45px;
+  aspect-ratio: 1;
+  --c: no-repeat linear-gradient(#000 0 0);
+  background: 
+    var(--c) 0%   50%,
+    var(--c) 50%  50%,
+    var(--c) 100% 50%;
+  background-size: 20% 100%;
+  animation: l1 1s infinite linear;
+}
+@keyframes l1 {
+  0%  {background-size: 20% 100%,20% 100%,20% 100%}
+  33% {background-size: 20% 10% ,20% 100%,20% 100%}
+  50% {background-size: 20% 100%,20% 10% ,20% 100%}
+  66% {background-size: 20% 100%,20% 100%,20% 10% }
+  100%{background-size: 20% 100%,20% 100%,20% 100%}
+}
+
+.badge-primary{
+  background-color: #1890FF !important;
+}
+
+.c-dashboardInfo {
+  margin-bottom: 15px;
+}
+.c-dashboardInfo .wrap {
+  background: #ffffff;
+  box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 40px 25px 20px;
+  height: 100%;
+}
+.c-dashboardInfo__title,
+.c-dashboardInfo__subInfo {
+  color: #6c6c6c;
+  font-size: 1.18em;
+}
+.c-dashboardInfo span {
+  display: block;
+}
+.c-dashboardInfo__count {
+  font-weight: 600;
+  font-size: 2.5em;
+  line-height: 64px;
+  color: #323c43;
+}
+.c-dashboardInfo .wrap:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  content: "";
+}
+
+.c-dashboardInfo:nth-child(1) .wrap:after {
+  background: linear-gradient(82.59deg, #00c48c 0%, #00a173 100%);
+}
+.c-dashboardInfo:nth-child(2) .wrap:after {
+  background: linear-gradient(81.67deg, #0084f4 0%, #1a4da2 100%);
+}
+.c-dashboardInfo:nth-child(3) .wrap:after {
+  background: linear-gradient(69.83deg, #0084f4 0%, #00c48c 100%);
+}
+.c-dashboardInfo:nth-child(4) .wrap:after {
+  background: linear-gradient(81.67deg, #ff647c 0%, #1f5dc5 100%);
+}
+.c-dashboardInfo__title svg {
+  color: #d7d7d7;
+  margin-left: 5px;
+}
+.MuiSvgIcon-root-19 {
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 24px;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.accordion-body{
+  overflow-x: auto;
+}
+
+.app,.css-18unl23,.css-dip3t8  {
+  background: #0D6EFD;
+  background-color:#0D6EFD !important;
+  color: white;
+  
+}
+
+table button{
+  padding: 14px 20px;
 }
