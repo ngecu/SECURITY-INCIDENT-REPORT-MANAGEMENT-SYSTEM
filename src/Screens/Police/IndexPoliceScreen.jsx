@@ -1,31 +1,16 @@
-import { Button, Card, DatePicker, Dropdown, List, Menu, Modal, Popconfirm, Result, Tabs } from 'antd';
-import { useEffect, useState } from 'react';
-import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { LinkOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
 import Topbar from './components/Topbar';
-import moment from 'moment';
-import BalanceSheet from './components/BalanceSheet';
-import IncomeStatement from './components/IncomeStatement';
+
 import {  Col, Row,Table } from 'react-bootstrap';
-import Sidebar2 from './components/Sidebar2';
 import { ToastContainer,toast } from 'react-toastify';
-import { creditAllStudentsFees, listTransactions } from '../../actions/transactionActions';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../../Components/Loader';
-import { getAllRequisitions } from '../../actions/requisitionActions';
-import { getAllReimbursements } from '../../actions/reimbursmentActions';
-import { getAllPettyCash } from '../../actions/pettycashActions';
-import { Pie } from 'react-chartjs-2';
+
+
+
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import SidebarX from './components/Sidebar';
+import SidebarX from './components/Sidebar2';
 
-const { TabPane } = Tabs;
-
-
-
-const IndexFinanceScreen = () => {
+const IndexPoliceScreen = () => {
   const dispatch = useDispatch()
 
   ChartJS.register(ArcElement, Tooltip, Legend);
@@ -144,4 +129,4 @@ theme="dark"
   );
 };
 
-export default IndexFinanceScreen;
+export default IndexPoliceScreen;

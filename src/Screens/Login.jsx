@@ -8,15 +8,9 @@ import { login } from '../actions/userActions'
 import { useEffect } from 'react';
 import logo from '../assets/logo.png';
 import { Link, useNavigate } from "react-router-dom";
-import IndexMarketingScreen from './Marketing/IndexMarketingScreen';
-import { IoFingerPrintOutline } from "react-icons/io5";
 import { ClientJS } from 'clientjs';
 import Loader from '../Components/Loader';
-import IndexRegistrarScreen from './Registrar/IndexRegistrarScreen';
-import IndexFinanceScreen from './Finance/IndexFinanceScreen';
-import IndexStudentScreen from './Student/IndexStudentScreen';
-import IndexTrainerScreen from './Trainer/IndexTrainerScreen';
-import IndexExaminerScreen from './Examiner/IndexExaminerScreen';
+
 
 const Login = () => {
 
@@ -53,7 +47,7 @@ alert(fingerprint);
 
   return (
     <>
-    {!userInfo ? (
+    
 
 <div style={{background:'#E6F4FF'}}>
 <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -184,22 +178,7 @@ theme="dark"
 />
 
 </div>
-    ):(
-      
-      <>
-      {userInfo.role === 'Agent' && (     <IndexMarketingScreen /> )}
-      {userInfo.role === 'Registrar' && (     <IndexRegistrarScreen /> )}
-      {userInfo.role === 'Accountant' && (     <IndexFinanceScreen /> )}
-      {userInfo.role === 'Student' && (     <IndexStudentScreen /> )}
-      {userInfo.role === 'Trainer' && (     <IndexTrainerScreen /> )}
-      {userInfo.role === 'Examiner' && (     <IndexExaminerScreen /> )}
-
-
-
-
-
-      
-      </>)}
+    
       
     </>
     

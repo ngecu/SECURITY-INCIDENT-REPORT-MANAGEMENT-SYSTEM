@@ -20,13 +20,14 @@ import { CgProfile } from "react-icons/cg";
 import { logout } from '../../../actions/userActions';
 import {Button} from 'antd'
 import { useDispatch, useSelector } from 'react-redux';
-import marketer from '../../../assets/marketer.png'
+
 
 
 const activeLinkStyle = {
     borderRadius: '160px',
     // borderTopLeftRadius: '160px',
-    backgroundColor: '#6F121F',
+    backgroundColor: '#E4C11F',
+    color:'black'
     // paddingRight: 0,
     // marginRight: 0
 };
@@ -35,12 +36,11 @@ const Sidebar2 = () => {
 
   const userLogin = useSelector((state) => state.userLogin)
 const { loading, error, userInfo,success } = userLogin
-const storedUser = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
-const shouldShowNavLink = storedUser && storedUser.isHead;
+const storedUser = JSON.parse(localStorage.getItem('userInfo'));
 
  const user = {
   name: userInfo?.userData?.firstName || storedUser?.userData?.firstName || 'Default Name',
-    profilePicture: "https://t3.ftcdn.net/jpg/05/16/27/58/360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg" // Example image
+    profilePicture: "https://randomuser.me/api/portraits/men/1.jpg" // Example image
 };
 
     const location = useLocation();
@@ -51,11 +51,11 @@ const shouldShowNavLink = storedUser && storedUser.isHead;
 
   return (
     <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
-      <CDBSidebar textColor="#fff" backgroundColor="#0D6EFD" style={{width:'100%',minWidth:'100%',zIndex:0,paddingTop:0}}>
+      <CDBSidebar textColor="#fff" backgroundColor="#713131" style={{width:'100%',minWidth:'100%',zIndex:0,paddingTop:0}}>
         <CDBSidebarHeader >
         <div className="d-flex align-items-center justify-content-between">
                 <div className="d-flex align-items-center">
-                    <Image src={marketer} alt="Profile" className="rounded-circle" style={{ height: '48px', width: '48px' }} />
+                    <Image src={user.profilePicture} alt="Profile" className="rounded-circle" style={{ height: '48px', width: '48px' }} />
                     <span className="ml-2 text-light">{user.name}</span>
                 </div>
             </div>
@@ -66,27 +66,18 @@ const shouldShowNavLink = storedUser && storedUser.isHead;
             <NavLink exact to="/"  >
               <CDBSidebarMenuItem style={location.pathname === '/' ? activeLinkStyle : {}}> <FaHome className='mx-2' />Dashboard</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/marketing/all_leads" activeClassName="activeClicked" >
-            <CDBSidebarMenuItem  style={location.pathname === '/marketing/all_leads' ? activeLinkStyle : {}}> <FaLandMineOn className='mx-2' />All Leads </CDBSidebarMenuItem>
+            <NavLink exact to="/police/ob" activeClassName="activeClicked">
+            <CDBSidebarMenuItem style={location.pathname === '/police/ob' ? activeLinkStyle : {}}> <GiLandMine className='mx-2' /> Occurence Book</CDBSidebarMenuItem>            
             </NavLink>
-            <NavLink exact to="/marketing/my_leads" activeClassName="activeClicked">
-            <CDBSidebarMenuItem style={location.pathname === '/marketing/my_leads' ? activeLinkStyle : {}}> <GiLandMine className='mx-2' /> My Leads</CDBSidebarMenuItem>            </NavLink>
 
-            <NavLink exact to="/marketing/requests" activeClassName="activeClicked">
-            <CDBSidebarMenuItem style={location.pathname === '/marketing/requests' ? activeLinkStyle : {}}> <BsSendArrowUpFill className='mx-2' />Requests</CDBSidebarMenuItem>  </NavLink>
-            
-<React.Fragment>
-            {shouldShowNavLink && (
-                <NavLink exact to="/marketing/department_requests" activeClassName="activeClicked">
-                    <CDBSidebarMenuItem style={location.pathname === '/marketing/department_requests' ? activeLinkStyle : {}} icon="column">
-                        <BsSendArrowUpFill className='mx-2' /> Department Requests
-                    </CDBSidebarMenuItem>
-                </NavLink>
-            )}
-            </React.Fragment>
-                       
-            <NavLink exact to="/marketing/profile" activeClassName="activeClicked">
-            <CDBSidebarMenuItem style={location.pathname === '/marketing/profile' ? activeLinkStyle : {}}> <CgProfile className='mx-2' />My  Profile</CDBSidebarMenuItem>  </NavLink>
+            <NavLink exact to="/police/evidence" activeClassName="activeClicked">
+            <CDBSidebarMenuItem style={location.pathname === '/police/evidence' ? activeLinkStyle : {}}> <GiLandMine className='mx-2' /> Evidence Room</CDBSidebarMenuItem>            
+            </NavLink>
+           
+            <NavLink exact to="/police/duties" activeClassName="activeClicked">
+            <CDBSidebarMenuItem style={location.pathname === '/police/duties' ? activeLinkStyle : {}}> <GiLandMine className='mx-2' /> Duty Rotations</CDBSidebarMenuItem>            
+            </NavLink>
+       
 
           </CDBSidebarMenu>
         </CDBSidebarContent>
