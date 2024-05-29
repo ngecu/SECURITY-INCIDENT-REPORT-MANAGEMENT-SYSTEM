@@ -1,3 +1,0 @@
-export const STK_PUSH_REQUEST = 'STK_PUSH_REQUEST';
-export const STK_PUSH_SUCCESS = 'STK_PUSH_SUCCESS';
-export const STK_PUSH_FAIL = 'STK_PUSH_FAIL';

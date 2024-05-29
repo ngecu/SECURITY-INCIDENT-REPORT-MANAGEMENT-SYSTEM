@@ -1,8 +1,8 @@
-import { Form, Input, Checkbox, Typography, Select } from 'antd';
-import { ToastContainer, toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
+import { Form, Input, Typography, Select, Spin, message } from 'antd';
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
+import { useIncidentMutation } from '../features/incidentApi';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {
   toLatLon,
@@ -12,7 +12,7 @@ import {
   insidePolygon,
 } from 'geolocation-utils';
 
-import Loader from '../Components/Loader';
+
 
 
 const { Option } = Select;
@@ -29,12 +29,12 @@ const incidentTypes = [
   'Arson'
 ];
 
-const ReportIncidentScreen = () => {
+const IncidentReport = () => {
+    const navigate = useNavigate();
 
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading,setLoading]= useState(null);
+  const [incident, { isLoading, error, data }] = useIncidentMutation();
   const [address, setAddress] = useState(null)
 
   const getLocation = () => {
@@ -59,29 +59,37 @@ const ReportIncidentScreen = () => {
 
 
   useEffect(() => {
-
-
     getLocation();
   }, []);
 
+  useEffect(() => {
+    if (error) {
+      message.error(error.data.message || 'Login failed');
+    }
+    if (data) {
+      message.success('Login successful');
+      navigate('/dashboard');
+    }
+  }, [error, data, navigate]);
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     const { incidentType, phoneNumber, description } = values;
     // Dispatch your report incident action here
     console.log('Incident Reported: ', { incidentType, phoneNumber, description });
-  };
+    await incident({ incidentType, phoneNumber, description })
+};
 
   const getCurrentYear = () => {
     return new Date().getFullYear();
   };
 
   return (
-    <>
-
+    
+<Spin spinning={isLoading} size="large">
         <div style={{ background: '#E6F4FF' }}>
           <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <div style={{ boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px', padding: '20px', width: '800px', background: '#fff', borderRadius: '20px' }}>
-              {loading ? <Loader /> :
+             
                 <Row>
                   <Col md={12} className='text-center'>
                     <h1 style={{ color: '#252664' }}>NATIONAL POLICE SERVICE</h1>
@@ -146,24 +154,13 @@ const ReportIncidentScreen = () => {
                     <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP0aFa8XUS06MWb6GeRc85s-Ya8cUGo2J1ZWo63CGwrg&s' alt="" className='w-100' />
                   </Col>
                 </Row>
-              }
+              
             </div>
           </Container>
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="dark"
-          />
+          
         </div>
-    </>
+        </Spin>
   );
 };
 
-export default ReportIncidentScreen;
+export default IncidentReport;
