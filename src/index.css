@@ -200,3 +200,7 @@
 table button{
   padding: 14px 20px;
 }
+
+.react-calendar{
+  width: 100%;
+}
