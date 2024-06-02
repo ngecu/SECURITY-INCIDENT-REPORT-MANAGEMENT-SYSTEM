@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
-import { Notifications } from 'react-push-notification'
 
 import Login from './Screens/Login';
 import NotFound from "./Screens/NotFound";
@@ -17,8 +16,6 @@ function App() {
   return (
      
     <BrowserRouter>
-    <Notifications />
-
     <Routes>
     <Route path="/" element={<Login />}/>
         
