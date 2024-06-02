@@ -29,14 +29,7 @@ const PoliceIndex = () => {
   <div class="wrap">
     <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">INCIDENT SUMMARY </h4>
     <Table>
-      <tr>
-        <th>Fee Invoices</th>
-        <td>KES 23,317,588.00</td>
-      </tr>
-      <tr>
-        <th>Fee Payments</th>
-        <td>KES 18,379,767.00</td>
-      </tr>
+   
     </Table>
 
   </div>
