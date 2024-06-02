@@ -5,6 +5,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../features/userApi.js';
+import logo from '../assets/logo.png';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -122,8 +123,7 @@ const Login = () => {
                   </Form>
                 </Col>
                 <Col md={6} className="d-none d-md-block">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP0aFa8XUS06MWb6GeRc85s-Ya8cUGo2J1ZWo63CGwrg&s" alt="" className="w-100" />
-                </Col>
+                <img src={logo} alt="" className='w-100' />                </Col>
               </Row>
             </div>
           </Container>

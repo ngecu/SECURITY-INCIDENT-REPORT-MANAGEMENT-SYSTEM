@@ -12,13 +12,13 @@ import {    Space, Table, Tag } from 'antd';
 import { useState } from 'react';
 
 
-const AddIncidentModal = ({ visible, onCreate, onCancel }) => {
+const AddEvidenceModal = ({ visible, onCreate, onCancel }) => {
   const [form] = Form.useForm();
 
   return (
     <Modal
       visible={visible}
-      title="Report New Incident"
+      title="Add Evidence"
       okText="Submit"
       cancelText="Cancel"
       onCancel={onCancel}
@@ -302,9 +302,9 @@ const EvidenceRoom = () => {
           setVisible(true);
         }}
       >
-        Report Incident
+        Add Evidence
       </Button>
-      <AddIncidentModal
+      <AddEvidenceModal
         visible={visible}
         onCreate={onCreate}
         onCancel={() => {
