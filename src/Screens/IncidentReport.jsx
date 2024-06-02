@@ -108,7 +108,7 @@ const IncidentReport = () => {
                   </Col>
                   <Col md={6}>
                   <small className="text-danger">
-                      *please accept the location permission for us to capture your location 
+                      *Your location,lat long {address}
                     </small>
                     <Form
                       className="w-100"
