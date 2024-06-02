@@ -74,9 +74,12 @@ const storedUser = JSON.parse(localStorage.getItem('userInfo'));
         </CDBSidebarContent>
 
         <CDBSidebarFooter className="sidebar-footer" style={{padding:'0 17%'}}>
+          <NavLink exact to="/" >
           <Button type="primary" style={{ backgroundColor: 'red', borderRadius: '120px' }}>
             <FiLogOut className="mx-2" /> Logout
           </Button>
+          </NavLink>
+         
         </CDBSidebarFooter>
 
    

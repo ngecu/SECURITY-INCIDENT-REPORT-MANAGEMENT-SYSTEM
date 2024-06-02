@@ -30,6 +30,13 @@ const incidentTypes = [
   'Arson'
 ];
 
+const contentStyle = {
+  padding: 50,
+  background: 'rgba(0, 0, 0, 0.05)',
+  borderRadius: 4,
+};
+const content = <div style={contentStyle}></div>
+
 const IncidentReport = () => {
     const navigate = useNavigate();
 
@@ -38,15 +45,7 @@ const IncidentReport = () => {
   const [incident, { isLoading, error, data }] = useIncidentMutation();
   const [address, setAddress] = useState(null)
 
-  const buttonClick = () => {
-    addNotification({
-        title: 'Warning',
-        subtitle: 'This is a subtitle',
-        message: 'This is a very long message',
-        theme: 'darkblue',
-        native: true // when using native, your OS will handle theming.
-    });
-};
+
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -54,8 +53,6 @@ const IncidentReport = () => {
         (position) => {
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
-
-       
           setAddress(`${position.coords.latitude}, ${position.coords.longitude}`);
 
         },
@@ -83,18 +80,6 @@ const IncidentReport = () => {
     }
   }, [error, data, navigate]);
 
-  
-  const showNotification = (title, body) => {
-    if (Notification.permission === 'granted') {
-      new Notification(title, { body });
-    } else if (Notification.permission !== 'denied') {
-      Notification.requestPermission().then(permission => {
-        if (permission === 'granted') {
-          new Notification(title, { body });
-        }
-      });
-    }
-  };
 
   const onFinish = async (values) => {
     const { incidentType, phoneNumber, description } = values;
@@ -105,9 +90,8 @@ const IncidentReport = () => {
     new Notification('Hey')
   };
 
-  const getCurrentYear = () => {
-    return new Date().getFullYear();
-  };
+
+
 
   return (
     
@@ -116,6 +100,7 @@ const IncidentReport = () => {
           <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <div style={{ boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px', padding: '20px', width: '800px', background: '#fff', borderRadius: '20px' }}>
              
+            {address ? 
                 <Row>
                   <Col md={12} className='text-center'>
                     <h1 style={{ color: '#252664' }}>NATIONAL POLICE SERVICE</h1>
@@ -179,7 +164,7 @@ const IncidentReport = () => {
                   <Col md={6} className="d-none d-md-block">
                     <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP0aFa8XUS06MWb6GeRc85s-Ya8cUGo2J1ZWo63CGwrg&s' alt="" className='w-100' />
                   </Col>
-                </Row>
+                </Row> : <Spin tip={`Fetching Location`}>{content}</Spin> }
               
             </div>
           </Container>
