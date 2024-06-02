@@ -54,7 +54,7 @@ const IncidentReport = () => {
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
           setAddress(`${position.coords.latitude}, ${position.coords.longitude}`);
-
+          console.log(address);
         },
         (error) => {
           setError(error.message);
