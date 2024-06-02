@@ -1,19 +1,19 @@
+import React, { useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
-import Topbar from './components/Topbar';
-import { ToastContainer,toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button, Modal, Form, Input, Select, DatePicker, TimePicker, message } from 'antd';
+
+import { Button, Modal, Form, Input, Select, DatePicker, TimePicker, Upload, message, Table, Tag, Space } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 import moment from 'moment';
 
-
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-
-import {    Space, Table, Tag } from 'antd';
-import { useState } from 'react';
-
+const { Option } = Select;
 
 const AddEvidenceModal = ({ visible, onCreate, onCancel }) => {
   const [form] = Form.useForm();
+  const [fileList, setFileList] = useState([]);
+
+  const handleUploadChange = ({ fileList }) => {
+    setFileList(fileList);
+  };
 
   return (
     <Modal
@@ -27,7 +27,8 @@ const AddEvidenceModal = ({ visible, onCreate, onCancel }) => {
           .validateFields()
           .then((values) => {
             form.resetFields();
-            onCreate(values);
+            onCreate({ ...values, files: fileList });
+            setFileList([]);
           })
           .catch((info) => {
             console.log('Validate Failed:', info);
@@ -77,20 +78,21 @@ const AddEvidenceModal = ({ visible, onCreate, onCancel }) => {
           <Input placeholder="Enter your name" />
         </Form.Item>
 
-        <Form.Item
-          name="date"
-          label="Date"
-          style={{ display: 'none' }}
-        >
-          <DatePicker />
-        </Form.Item>
+        
 
         <Form.Item
-          name="time"
-          label="Time"
-          style={{ display: 'none' }}
+          name="evidenceFiles"
+          label="Upload Evidence"
+          rules={[{ required: true, message: 'Please upload evidence files!' }]}
         >
-          <TimePicker />
+          <Upload
+            multiple
+            beforeUpload={() => false}
+            fileList={fileList}
+            onChange={handleUploadChange}
+          >
+            <Button icon={<UploadOutlined />}>Upload (PDF/Word/Image)</Button>
+          </Upload>
         </Form.Item>
 
         <Form.Item
@@ -106,7 +108,6 @@ const AddEvidenceModal = ({ visible, onCreate, onCancel }) => {
 };
 
 const EvidenceRoom = () => {
-
   const [visible, setVisible] = useState(false);
   const [incidents, setIncidents] = useState([]);
 
@@ -116,139 +117,17 @@ const EvidenceRoom = () => {
       date: values.date.format('YYYY-MM-DD'),
       time: values.time.format('HH:mm'),
       status: 'Open',
+      key: incidents.length + 1,
     };
     setIncidents([...incidents, newIncident]);
     setVisible(false);
     message.success('Incident reported successfully!');
   };
 
-  const dispatch = useDispatch()
-
-  ChartJS.register(ArcElement, Tooltip, Legend);
-  const cancel = (e) => {
-    console.log(e);
-    // message.error('Click on No');
+  const handleDownload = (file) => {
+   
   };
 
-
-  const data = {
-    labels: ['Fully Paid', 'Partially Paid', 'Unpaid'],
-    datasets: [
-      {
-        data: [300, 150, 50], // Example data, replace with your actual data
-        backgroundColor: ['#36A2EB', '#FFCE56', '#FF6384'], // Example colors, customize as needed
-        hoverBackgroundColor: ['#36A2EB', '#FFCE56', '#FF6384'],
-      },
-    ],
-  };
-  
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-  };
-
-  const [dataSource, setDataSource] = useState([
-    {
-      key: '1',
-      date: '2024-05-21',
-      time: '14:30',
-      incidentType: 'Theft',
-      description: 'Reported theft of a bicycle.',
-      reportedBy: 'John Doe',
-      status: 'Open',
-    },
-    {
-      key: '2',
-      date: '2024-05-21',
-      time: '15:00',
-      incidentType: 'Assault',
-      description: 'Reported physical assault in market area.',
-      reportedBy: 'Jane Smith',
-      status: 'In Progress',
-    },
-
-    {
-      key: '1',
-      date: '2024-05-21',
-      time: '14:30',
-      incidentType: 'Theft',
-      description: 'Reported theft of a bicycle.',
-      reportedBy: 'John Doe',
-      status: 'Open',
-    },
-    {
-      key: '2',
-      date: '2024-05-21',
-      time: '15:00',
-      incidentType: 'Assault',
-      description: 'Reported physical assault in market area.',
-      reportedBy: 'Jane Smith',
-      status: 'In Progress',
-    },
-
-
-    {
-      key: '1',
-      date: '2024-05-21',
-      time: '14:30',
-      incidentType: 'Theft',
-      description: 'Reported theft of a bicycle.',
-      reportedBy: 'John Doe',
-      status: 'Open',
-    },
-    {
-      key: '2',
-      date: '2024-05-21',
-      time: '15:00',
-      incidentType: 'Assault',
-      description: 'Reported physical assault in market area.',
-      reportedBy: 'Jane Smith',
-      status: 'In Progress',
-    },
-
-
-    {
-      key: '1',
-      date: '2024-05-21',
-      time: '14:30',
-      incidentType: 'Theft',
-      description: 'Reported theft of a bicycle.',
-      reportedBy: 'John Doe',
-      status: 'Open',
-    },
-    {
-      key: '2',
-      date: '2024-05-21',
-      time: '15:00',
-      incidentType: 'Assault',
-      description: 'Reported physical assault in market area.',
-      reportedBy: 'Jane Smith',
-      status: 'In Progress',
-    },
-
-
-    {
-      key: '1',
-      date: '2024-05-21',
-      time: '14:30',
-      incidentType: 'Theft',
-      description: 'Reported theft of a bicycle.',
-      reportedBy: 'John Doe',
-      status: 'Open',
-    },
-    {
-      key: '2',
-      date: '2024-05-21',
-      time: '15:00',
-      incidentType: 'Assault',
-      description: 'Reported physical assault in market area.',
-      reportedBy: 'Jane Smith',
-      status: 'In Progress',
-    },
-    // Add more entries as needed
-  ]);
-
-  // Define columns for the table
   const columns = [
     {
       title: 'Date',
@@ -287,43 +166,45 @@ const EvidenceRoom = () => {
           </Tag>
         );
       },
-    }
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (text, record) => (
+        <Space size="middle">
+          <a onClick={() => handleDownload(record.files[0])}>Download</a>
+        </Space>
+      ),
+    },
   ];
 
   return (
+    <div className="row align-items-stretch">
+      <div>
+        <Button
+          type="primary"
+          className="my-2 w-100"
+          onClick={() => {
+            setVisible(true);
+          }}
+        >
+          Add Evidence
+        </Button>
+        <AddEvidenceModal
+          visible={visible}
+          onCreate={onCreate}
+          onCancel={() => {
+            setVisible(false);
+          }}
+        />
+      </div>
 
-  <div class="row align-items-stretch">
-
-  <div>
-      <Button
-        type="primary"
-        className='my-2 w-100'
-        onClick={() => {
-          setVisible(true);
-        }}
-      >
-        Add Evidence
-      </Button>
-      <AddEvidenceModal
-        visible={visible}
-        onCreate={onCreate}
-        onCancel={() => {
-          setVisible(false);
-        }}
-      />
-    </div>
-
-      <div class="c-dashboardInfo col-lg-12 col-md-12">
-        <div class="wrap">
-        <Table dataSource={dataSource} columns={columns} />
-        
+      <div className="c-dashboardInfo col-lg-12 col-md-12">
+        <div className="wrap">
+          <Table dataSource={incidents} columns={columns} />
         </div>
       </div>
-     
-   
-     
     </div>
-
   );
 };
 

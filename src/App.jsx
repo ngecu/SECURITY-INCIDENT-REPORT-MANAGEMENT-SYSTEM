@@ -1,5 +1,7 @@
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
+import { Notifications } from 'react-push-notification'
+
 import Login from './Screens/Login';
 import NotFound from "./Screens/NotFound";
 import IncidentReport from "./Screens/IncidentReport.jsx";
@@ -10,12 +12,13 @@ import EvidenceRoom from "./Screens/Police/EvidenceRoom.jsx";
 import DutyRotation from "./Screens/Police/DutyRotation.jsx";
 
 
-
 function App() {
 
   return (
      
     <BrowserRouter>
+    <Notifications />
+
     <Routes>
     <Route path="/" element={<Login />}/>
         

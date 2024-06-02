@@ -1,4 +1,5 @@
 import { Form, Input, Typography, Select, Spin, message } from 'antd';
+import addNotification from 'react-push-notification';
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { useIncidentMutation } from '../features/incidentApi';
@@ -37,6 +38,16 @@ const IncidentReport = () => {
   const [incident, { isLoading, error, data }] = useIncidentMutation();
   const [address, setAddress] = useState(null)
 
+  const buttonClick = () => {
+    addNotification({
+        title: 'Warning',
+        subtitle: 'This is a subtitle',
+        message: 'This is a very long message',
+        theme: 'darkblue',
+        native: true // when using native, your OS will handle theming.
+    });
+};
+
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -72,12 +83,27 @@ const IncidentReport = () => {
     }
   }, [error, data, navigate]);
 
+  
+  const showNotification = (title, body) => {
+    if (Notification.permission === 'granted') {
+      new Notification(title, { body });
+    } else if (Notification.permission !== 'denied') {
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          new Notification(title, { body });
+        }
+      });
+    }
+  };
+
   const onFinish = async (values) => {
     const { incidentType, phoneNumber, description } = values;
     // Dispatch your report incident action here
     console.log('Incident Reported: ', { incidentType, phoneNumber, description });
-    await incident({ incidentType, phoneNumber, description })
-};
+    // await incident({ incidentType, phoneNumber, description })
+    alert("ey")
+    new Notification('Hey')
+  };
 
   const getCurrentYear = () => {
     return new Date().getFullYear();

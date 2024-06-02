@@ -5,6 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import { Avatar, Box, Menu, Tooltip } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
+import profile from '..//..//..//assets/profile.png';
 
 const Topbar = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -63,7 +64,7 @@ const Topbar = () => {
         <Box className="mx-2" sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="https://randomuser.me/api/portraits/men/1.jpg" />
+                <Avatar alt="Remy Sharp" src={profile} />
               </IconButton>
             </Tooltip>
             <Menu
