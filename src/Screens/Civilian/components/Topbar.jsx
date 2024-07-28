@@ -42,7 +42,7 @@ const Topbar = () => {
   return (
     <Navbar bg="light" expand="lg" className="mb-3">
       <Container fluid>
-        <Navbar.Brand href="#home">👋 {getGreeting()} POLICE OFFICER</Navbar.Brand>
+        <Navbar.Brand href="#home">👋 {getGreeting()} Civilian</Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar" />
         <Navbar.Offcanvas
           id="offcanvasNavbar"

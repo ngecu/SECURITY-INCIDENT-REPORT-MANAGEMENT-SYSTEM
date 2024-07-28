@@ -54,17 +54,13 @@ const storedUser = JSON.parse(localStorage.getItem('userInfo'));
 
         <CDBSidebarContent className="sidebar-content" style={{paddingTop:'0 !important'}}>
           <CDBSidebarMenu>
-            <NavLink exact to="/police"  >
-              <CDBSidebarMenuItem style={location.pathname === '/police' ? activeLinkStyle : {}}> <FaHome className='mx-2' />Dashboard</CDBSidebarMenuItem>
+            <NavLink exact to="/civilian"  >
+              <CDBSidebarMenuItem style={location.pathname === '/civilian' ? activeLinkStyle : {}}> <FaHome className='mx-2' />Dashboard</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/police/ob" activeClassName="activeClicked">
-            <CDBSidebarMenuItem style={location.pathname === '/police/ob' ? activeLinkStyle : {}}> <GiLandMine className='mx-2' /> Occurence Book</CDBSidebarMenuItem>            
+            <NavLink exact to="/civilian/incidents" activeClassName="activeClicked">
+            <CDBSidebarMenuItem style={location.pathname === '/civilian/incidents' ? activeLinkStyle : {}}> <GiLandMine className='mx-2' /> My Incidents</CDBSidebarMenuItem>            
             </NavLink>
-           
-            <NavLink exact to="/police/duty_rotation" activeClassName="activeClicked">
-            <CDBSidebarMenuItem style={location.pathname === '/police/duty_rotation' ? activeLinkStyle : {}}> <GiLandMine className='mx-2' /> Duty Rotations</CDBSidebarMenuItem>            
-            </NavLink>
-       
+              
 
           </CDBSidebarMenu>
         </CDBSidebarContent>

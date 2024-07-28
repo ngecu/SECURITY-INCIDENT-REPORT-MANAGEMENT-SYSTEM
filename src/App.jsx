@@ -3,12 +3,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Login from './Screens/Login';
 import NotFound from "./Screens/NotFound";
-import IncidentReport from "./Screens/IncidentReport.jsx";
+import IncidentReport from "./Screens/SignUp.jsx";
 import PoliceLayout from "./Screens/Police/PoliceLayout.jsx";
 import PoliceIndex from "./Screens/Police/Index.jsx";
 import OccurenceBook from "./Screens/Police/OccurrenceBook.jsx";
-import EvidenceRoom from "./Screens/Police/EvidenceRoom.jsx";
 import DutyRotation from "./Screens/Police/DutyRotation.jsx";
+import CivilianLayout from "./Screens/Civilian/CivilianLayout.jsx";
+import CivilianIndex from "./Screens/Civilian/Index.jsx";
+import CivilianIncidentReport from "./Screens/Civilian/IncidentReport.jsx";
+import SignUp from "./Screens/SignUp.jsx";
 
 
 function App() {
@@ -19,7 +22,7 @@ function App() {
     <Routes>
     <Route path="/" element={<Login />}/>
         
-    <Route path="/report-incident" element={<IncidentReport /> } />
+    <Route path="/sign-up" element={<SignUp /> } />
     <Route path="/police" element={<PoliceLayout/> } >
     <Route
           path=""
@@ -30,10 +33,7 @@ function App() {
           element={<OccurenceBook />}
         />
 
-<Route
-          path="evidence"
-          element={<EvidenceRoom />}
-        />
+
 
 <Route
           path="duty_rotation"
@@ -44,6 +44,24 @@ function App() {
 
 
     </Route>
+
+    <Route path="/civilian" element={<CivilianLayout/> } >
+    <Route
+          path=""
+          element={<CivilianIndex />}
+        />
+          
+
+<Route
+          path="incidents"
+          element={<CivilianIncidentReport />}
+        />
+
+
+
+
+    </Route>
+
     <Route path="*" element={<NotFound />} />
     </Routes>
  

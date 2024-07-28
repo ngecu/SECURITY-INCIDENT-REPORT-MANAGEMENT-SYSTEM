@@ -17,7 +17,17 @@ const Login = () => {
     }
     if (data) {
       message.success('Login successful');
-      navigate('/dashboard'); // Redirect to a dashboard or home page upon successful login
+      console.log("data is ",data);
+      
+      localStorage.setItem('login',JSON.stringify(data))
+      if (data.userType == "Police") {
+      navigate('/police'); // Redirect to a dashboard or home page upon successful login
+        
+      }
+      else{
+      navigate('/civilian'); // Redirect to a dashboard or home page upon successful login
+
+      }
     }
   }, [error, data, navigate]);
 
@@ -113,7 +123,7 @@ const Login = () => {
                       </Col>
 
                       <Col md={12} className="d-flex justify-content-center align-items-center">
-                        <Link to="report-incident">Need help?🆘Click me👈</Link>
+                        <Link to="sigb-up">Dont have an account?</Link>
                       </Col>
 
                       <Col md={12}>
